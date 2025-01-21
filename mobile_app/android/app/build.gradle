@@ -1,0 +1,48 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.ckd_analyser"
+    compileSdkVersion 34 // Updated to SDK 34
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8" // Java compatibility level for Kotlin code
+    }
+
+    defaultConfig {
+        applicationId "com.example.ckd_analyser"
+        minSdkVersion 21 // This should match your minimum required Android version
+        targetSdkVersion 34 // Updated to match compileSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        multiDexEnabled true // Enable MultiDex if required
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.10"
+    implementation "androidx.multidex:multidex:2.0.1" // Enable MultiDex to handle many dependencies
+}
